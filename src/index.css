@@ -7,51 +7,61 @@ ol, ul {
   position: static;
 }
 
+.top-info{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
 .app-title{
   text-align: center;
-  font: 35px "Jua";
+  font: 5vw "Jua";
   font-weight: bold;
   margin-bottom: 2%;
-  display: inline-block;
+  flex-shrink: 1;
 }
 
 #corgi_title1{
-  height: 75px;
-  width: 75px;
+  height: 13%;
+  width: 13%;
+  flex-shrink: 2;
 }
 
 #corgi_title2{
-  height: 75px;
-  width: 75px;
+  height: 13%;
+  width: 13%;
+  flex-shrink: 3;
 }
 
-.square img{
-  height: 100%;
-  width: 100%;
+.board-rows{
+  display: flex;
+  width: 35%;
+  flex-direction: column;
+  flex-wrap: nowrap;
 }
 
-.board-row:after {
+.board-row:after{
   clear: both;
   content: "";
   display: table;
 }
 
-.status {
-  margin-bottom: 10px;
-}
-
 .square {
   background: #e2e2e2;
   border: 4px solid #fff;
-  float: left;
-  font-size: 24px;
+  /* font-size: 24px; */
+  float: none;
   font-weight: bold;
-  line-height: 24px;
-  height: 150px;
-  margin: auto;
+  /* line-height: 24px; */
   padding: 0;
-  text-align: center;
-  width: 150px;
+  /* text-align: center; */
+  width: 33%;
+}
+
+.square img{
+  width: 100%;
+  height: 100%;
 }
 
 .square:focus {
@@ -67,8 +77,6 @@ ol, ul {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: static;
-  width: 100%;
 }
 
 .game-info-parent{

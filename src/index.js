@@ -5,6 +5,7 @@ import bagel from './images/phoebe.png'
 import ventus from './images/maki.png'
 import corgi_title1 from './images/ventus.png'
 import corgi_title2 from './images/bagel.png'
+import blank from './images/transparent.png'
 
 function Square(props){
   return (
@@ -18,7 +19,7 @@ class Board extends React.Component {
   renderSquare(i) {
     return (
       <Square
-        value={this.props.squares[i]}
+        value={(this.props.squares[i]==null) ? <img src={blank} id="blank" alt="BLANK"/>:this.props.squares[i]}
         onClick={() => this.props.onClick(i)}
       />
     );
@@ -26,21 +27,18 @@ class Board extends React.Component {
 
   render() {
     return (
-      <div>
-        <img src={corgi_title1} id="corgi_title1"/>
-        <h1 className = "app-title">VENTUS & BAGEL<br></br>CORGI TIC TAC TOE</h1>
-        <img src={corgi_title2} id = "corgi_title2"/>
-        <div className="board-row">
+      <div className="board-rows">
+        <div className="board-row1">
           {this.renderSquare(0)}
           {this.renderSquare(1)}
           {this.renderSquare(2)}
         </div>
-        <div className="board-row">
+        <div className="board-row2">
           {this.renderSquare(3)}
           {this.renderSquare(4)}
           {this.renderSquare(5)}
         </div>
-        <div className="board-row">
+        <div className="board-row3">
           {this.renderSquare(6)}
           {this.renderSquare(7)}
           {this.renderSquare(8)}
@@ -104,13 +102,23 @@ class Game extends React.Component {
 
     let status;
     if (winner){
-      status = 'WINNER: TEAM ' + winner.toUpperCase();
+      if (winner === "TIED GAME"){
+        status = winner;
+      }
+      else{
+        status = 'WINNER: TEAM ' + winner.toUpperCase();
+      }
     }
     else{
       status = 'TURN: TEAM ' + (this.state.xIsNext ? 'BAGEL ' : 'VENTUS');
     }
     return (
       <div className="game">
+      <div className = "top-info">
+      <img src={corgi_title1} id="corgi_title1"/>
+      <h1 className = "app-title">VENTUS & BAGEL<br></br>CORGI TIC TAC TOE</h1>
+      <img src={corgi_title2} id = "corgi_title2"/>
+      </div>
         <div className="game-board">
           <Board
             squares={current.squares}
@@ -155,5 +163,10 @@ function calculateWinner(squares){
       }
     }
   }
-  return null;
+  for (let i = 0; i < squares.length; i++){
+    if(squares[i] == null){
+      return null;
+    }
+  }
+  return "TIED GAME"
 }
