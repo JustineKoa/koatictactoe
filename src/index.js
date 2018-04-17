@@ -1,6 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import bagel from './images/phoebe.png'
+import ventus from './images/maki.png'
+import corgi_title1 from './images/ventus.png'
+import corgi_title2 from './images/bagel.png'
 
 function Square(props){
   return (
@@ -23,6 +27,9 @@ class Board extends React.Component {
   render() {
     return (
       <div>
+        <img src={corgi_title1} id="corgi_title1"/>
+        <h1 className = "app-title">VENTUS & BAGEL<br></br>CORGI TIC TAC TOE</h1>
+        <img src={corgi_title2} id = "corgi_title2"/>
         <div className="board-row">
           {this.renderSquare(0)}
           {this.renderSquare(1)}
@@ -62,7 +69,7 @@ class Game extends React.Component {
     if (calculateWinner(squares) || squares[i]){
       return;
     }
-    squares[i] = this.state.xIsNext ? 'X' : 'O';
+    squares[i] = this.state.xIsNext ? <img src={bagel} id="bagel" alt="BAGEL"/> : <img src={ventus} id="ventus" alt="VENTUS"/>;
     this.setState({
       history: history.concat([{
         squares: squares,
@@ -75,7 +82,7 @@ class Game extends React.Component {
   jumpTo(step){
     this.setState({
       stepNumber: step,
-      xIsNext: (step%2) == 0,
+      xIsNext: (step%2) === 0,
     });
   }
 
@@ -97,10 +104,10 @@ class Game extends React.Component {
 
     let status;
     if (winner){
-      status = 'Winner: ' + winner;
+      status = 'WINNER: TEAM ' + winner.toUpperCase();
     }
     else{
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+      status = 'TURN: TEAM ' + (this.state.xIsNext ? 'BAGEL ' : 'VENTUS');
     }
     return (
       <div className="game">
@@ -110,9 +117,12 @@ class Game extends React.Component {
             onClick={(i) => this.handleClick(i)}
             />
         </div>
+        <div className="game-info-parent">
         <div className="game-info">
-          <div>{status}</div>
-          <ol>{moves}</ol>
+          <div className="status-info">{status}</div>
+          <button className="new_game_button" onClick={() => this.jumpTo(0)}>NEW GAME</button>
+          {/*<ol>{moves}</ol> commented this out to hide previous moves feature*/}
+        </div>
         </div>
       </div>
     );
@@ -139,8 +149,10 @@ function calculateWinner(squares){
   ];
   for (let i = 0; i < lines.length; i++){
     const [a,b,c] = lines[i];
-    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]){
-      return squares[a];
+    if(squares[a] != null && squares[b] != null && squares[c] != null){
+      if (squares[a].props.id === squares[b].props.id && squares[a].props.id === squares[c].props.id){
+        return squares[a].props.id;
+      }
     }
   }
   return null;

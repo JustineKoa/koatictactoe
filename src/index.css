@@ -1,10 +1,33 @@
 body {
-  font: 14px "Century Gothic", Futura, sans-serif;
   margin: 20px;
 }
 
 ol, ul {
   padding-left: 30px;
+  position: static;
+}
+
+.app-title{
+  text-align: center;
+  font: 35px "Jua";
+  font-weight: bold;
+  margin-bottom: 2%;
+  display: inline-block;
+}
+
+#corgi_title1{
+  height: 75px;
+  width: 75px;
+}
+
+#corgi_title2{
+  height: 75px;
+  width: 75px;
+}
+
+.square img{
+  height: 100%;
+  width: 100%;
 }
 
 .board-row:after {
@@ -18,18 +41,17 @@ ol, ul {
 }
 
 .square {
-  background: #fff;
-  border: 1px solid #999;
+  background: #e2e2e2;
+  border: 4px solid #fff;
   float: left;
   font-size: 24px;
   font-weight: bold;
-  line-height: 34px;
-  height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
+  line-height: 24px;
+  height: 150px;
+  margin: auto;
   padding: 0;
   text-align: center;
-  width: 34px;
+  width: 150px;
 }
 
 .square:focus {
@@ -40,11 +62,32 @@ ol, ul {
   background: #ddd;
 }
 
-.game {
+.game-board{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: static;
+  width: 100%;
 }
 
-.game-info {
-  margin-left: 20px;
+.game-info-parent{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2%;
+  font: 25px "Jua";
+  text-align: center;
+}
+
+.new_game_button{
+  margin-top: 2%;
+  align-items: center;
+  text-align: center;
+  font: 18px "Jua";
+  color: white;
+  padding: 10px 20px;
+  background-color: #95afe5;
+  border-radius: 10px;
+
 }
